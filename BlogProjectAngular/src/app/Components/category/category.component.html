@@ -1,1 +1,65 @@
-<p>category works!</p>
+<div class="containers">
+    <h1 style="margin-top: 30px; margin-left: 30px;">Anketler</h1>
+    <button   mat-fab color="primary" style="margin-left: 10px;">
+      <mat-icon aria-label="label" matTooltip="Kullanici Ekle"  >add</mat-icon>
+    </button>
+    <p>&nbsp;</p>
+    <mat-form-field appearance="outline" style="margin-left: 20px;">
+      <input matInput placeholder="Aranacak Konuyu Giriniz" >
+    </mat-form-field>
+    
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
+      
+      <ng-container matColumnDef="Id" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Anket ID
+        </mat-header-cell>
+        <mat-cell *matCellDef="let category"> {{category.Id}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Title" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Anket Açıklama 
+        </mat-header-cell>
+        <mat-cell *matCellDef="let category"> {{category.Title}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Description" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Konusu
+        </mat-header-cell>
+        <mat-cell *matCellDef="let category"> {{category.Description}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="IsPublished" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Oluşturan Kullanıcı
+        </mat-header-cell>
+        <mat-cell *matCellDef="let category"> {{category.IsPublished}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="CreatedOn" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Oluşturan Kullanıcı
+        </mat-header-cell>
+        <mat-cell *matCellDef="let category"> {{category.CreatedOn}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="LastModifiedOn" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Oluşturan Kullanıcı
+        </mat-header-cell>
+        <mat-cell *matCellDef="let category"> {{category.LastModifiedOn}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="PublishedOn" >
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Oluşturan Kullanıcı
+        </mat-header-cell>
+        <mat-cell *matCellDef="let category"> {{category.PublishedOn}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="islemler">
+        <mat-header-cell *matHeaderCellDef> İşlemler
+        </mat-header-cell>
+        <mat-cell *matCellDef="let kayit"> 
+          <button mat-icon-button>
+            <mat-icon aria-label="label" color="primary" matTooltip="Anketi Çöz" >question_answer</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      
+    </mat-table>
+    <mat-paginator 
+      [pageSizeOptions]="[10, 25, 100]">
+    </mat-paginator>
+  </div>

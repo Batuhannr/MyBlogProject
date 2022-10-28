@@ -1,18 +1,23 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { ResultModel } from '../Models/ResultModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  apiUrl = "https://localhost:44300/api/";
+  public url = "https://localhost:44300/api/";
 
   constructor(
-    // public http: HttpClient
+    private http: HttpClient
   ) { }
   
   
   
-
+public getCategory() : Observable<ResultModel>{
+  return this.http.get<ResultModel>(this.url+ "category/get");
+}
   
 }

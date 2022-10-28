@@ -12,6 +12,7 @@ import { PostCategoryComponent } from './Components/post-category/post-category.
 import { PostComponent } from './Components/post/post.component';
 import { PostTagComponent } from './Components/post-tag/post-tag.component';
 import { TagComponent } from './Components/tag/tag.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TagComponent } from './Components/tag/tag.component';
     MaterialModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
