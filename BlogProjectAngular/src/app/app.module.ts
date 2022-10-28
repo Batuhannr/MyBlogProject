@@ -13,6 +13,7 @@ import { PostComponent } from './Components/post/post.component';
 import { PostTagComponent } from './Components/post-tag/post-tag.component';
 import { TagComponent } from './Components/tag/tag.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoryDialogComponent } from './Components/Dialogs/category-dialog/category-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,13 @@ import { HttpClientModule } from '@angular/common/http';
     PostCategoryComponent,
     PostComponent,
     PostTagComponent,
-    TagComponent
+    TagComponent,
+
+
+
+    //Dialogs 
+    CategoryDialogComponent
+
   ],
   imports: [
     MaterialModule,

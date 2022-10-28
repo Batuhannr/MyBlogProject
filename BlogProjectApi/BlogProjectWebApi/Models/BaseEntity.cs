@@ -8,6 +8,7 @@ namespace BlogProjectWebApi.Models
 {
     public class BaseEntity
     {
+
         [Key]
         public int Id { get; set; }
         public bool IsPublished { get; set; }

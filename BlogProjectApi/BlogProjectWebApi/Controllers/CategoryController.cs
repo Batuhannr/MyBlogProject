@@ -7,9 +7,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
+
 
 namespace BlogProjectWebApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CategoryController : ApiController
     {
         private CategoryRepository _repo = new CategoryRepository();
@@ -80,23 +83,10 @@ namespace BlogProjectWebApi.Controllers
         public ResultClass PostCategory(Category category)
         {
             ResultClass response = new ResultClass();
-            if (ModelState.IsValid)
-            {
-                response = _repo.Add(category);
-                //return Request.CreateResponse(HttpStatusCode.OK, "Ekleme Başarılı");
-                return response;
-            }
-            else
-            {
-                response.Result = false;
-                response.ResultMessages = new List<string>()
-                {
-                    "Please Required prop sent"
-                };
-                response.ResultObject = category;
-                //return Request.CreateErrorResponse(HttpStatusCode.NotFound, ModelState);
-                return response;
-            }
+            response = _repo.Add(category);
+            //return Request.CreateResponse(HttpStatusCode.OK, "Ekleme Başarılı");
+            return response;
+
         }
         [HttpPut]
         [Route("api/category/updatecategory/{Id}")]

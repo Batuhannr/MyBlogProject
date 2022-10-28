@@ -17,6 +17,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatRadioModule} from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox'
+import {ReactiveFormsModule } from '@angular/forms'
 
 const MatModuller = [
   MatButtonModule,
@@ -36,7 +38,9 @@ const MatModuller = [
   MatSelectModule,
   MatMenuModule,
   FormsModule,
-  MatRadioModule
+  MatRadioModule,
+  MatCheckboxModule,
+  ReactiveFormsModule
 ];
 
 @NgModule({
