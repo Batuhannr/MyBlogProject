@@ -1,5 +1,5 @@
 export class ResultModel{
     Result ?: boolean;
-    ResultMessage ?: string[];
+    ResultMessages ?: string[];
     ResultObject ?: object;
 }

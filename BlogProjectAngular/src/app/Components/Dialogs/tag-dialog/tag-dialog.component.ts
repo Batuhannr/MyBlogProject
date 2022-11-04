@@ -1,22 +1,22 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CategoryModel } from 'src/app/Models/CategoryModel';
+import { TagModel } from 'src/app/Models/TagModel';
 import { ApiService } from 'src/app/Services/apiService';
 
 @Component({
-  selector: 'app-category-dialog',
-  templateUrl: './category-dialog.component.html',
-  styleUrls: ['./category-dialog.component.css']
+  selector: 'app-tag-dialog',
+  templateUrl: './tag-dialog.component.html',
+  styleUrls: ['./tag-dialog.component.css']
 })
-export class CategoryDialogComponent implements OnInit {
+export class TagDialogComponent implements OnInit {
 
   DialogHeader: string = "";
-  newData : CategoryModel = new CategoryModel();
+  newData : TagModel = new TagModel();
   operation : string = "";
   frm !: FormGroup ;
   constructor(
-    public dialogRef : MatDialogRef<CategoryDialogComponent>,
+    public dialogRef : MatDialogRef<TagDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public frmBuild : FormBuilder,
     public apiService: ApiService,
@@ -25,10 +25,10 @@ export class CategoryDialogComponent implements OnInit {
     this.operation = data.operation;
     this.newData = data.data;
     if (this.operation == 'add') {
-      this.DialogHeader = 'Add new Category'
+      this.DialogHeader = 'Add new Tag'
     }
     else if (this.operation == 'update'){
-      this.DialogHeader ='Update Category' 
+      this.DialogHeader ='Update Tag' 
     }
     this.frm = this.FormCreate();
   } 

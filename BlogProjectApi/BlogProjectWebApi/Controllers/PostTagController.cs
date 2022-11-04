@@ -40,32 +40,17 @@ namespace BlogProjectWebApi.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("api/postTag/get/{id}")]
-        public ResultClass GetPostTagById(int id)
+        public List<PostTag> GetPostTagById(int postId)
         {
-            PostTag comment = _repo.Get(id);
-            ResultClass result = new ResultClass();
-            if (comment != null)
+            List<PostTag> postTags = _repo.GetPostTag(postId);
+            if (postTags != null)
             {
-                result.Result = true;
-                result.ResultMessages = new List<string>()
-                {
-                    "PostTag Loaded"
-                };
-                result.ResultObject = comment;
-                return result;
+                return postTags;
 
             }
             else
             {
-                result.Result = false;
-                result.ResultMessages = new List<string>()
-                {
-                    "PostTag is not found"
-                };
-                result.ResultObject = null;
-                return result;
+                return null;
             }
         }
 

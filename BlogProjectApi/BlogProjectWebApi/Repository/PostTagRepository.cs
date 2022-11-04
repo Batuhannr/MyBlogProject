@@ -72,6 +72,12 @@ namespace BlogProjectWebApi.Repository
             return _context.postTags.FirstOrDefault(e => e.Id == id);
         }
 
+
+        public List<PostTag> GetPostTag(int postId)
+        {
+            return _context.postTags.Where(s => s.PostId == postId).ToList();
+        }
+
         public List<PostTag> List()
         {
             return _context.postTags.ToList();
