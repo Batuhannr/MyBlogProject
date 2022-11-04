@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostCategoryComponent } from './post-category.component';
+import { ConfirmDialogComponent } from './confirm-dialog.component';
 
-describe('PostCategoryComponent', () => {
-  let component: PostCategoryComponent;
-  let fixture: ComponentFixture<PostCategoryComponent>;
+describe('ConfirmDialogComponent', () => {
+  let component: ConfirmDialogComponent;
+  let fixture: ComponentFixture<ConfirmDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PostCategoryComponent ]
+      declarations: [ ConfirmDialogComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PostCategoryComponent);
+    fixture = TestBed.createComponent(ConfirmDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -11,21 +11,31 @@ namespace BlogProjectWebApi.Controllers
     public class PostController : ApiController
     {
         private PostRepository _repo = new PostRepository();
+        private PostTagRepository _postTagRepository = new PostTagRepository();
+        private PostCategoryRepository _postCategoryRepository = new PostCategoryRepository();
+        private TagRepository _TagRepository = new TagRepository();
+        private CategoryRepository _CategoryRepository = new CategoryRepository();
 
         [HttpGet]
         [Route("api/post/get")]
         public ResultClass GetPost()
         {
-            List<Post> comments = _repo.List();
+            List<Post> Posts = _repo.List();
             ResultClass result = new ResultClass();
-            if (comments != null)
+            if (Posts != null)
             {
                 result.Result = true;
                 result.ResultMessages = new List<string>()
                 {
                     "Post Loaded"
                 };
-                result.ResultObject = comments;
+                foreach (var item in Posts)
+                {
+                    item.PostTags = GetPostTagById(item.Id);
+                    item.PostCategories = GetPostCategory(item.Id);
+
+                }
+                result.ResultObject = Posts;
                 return result;
             }
             else
@@ -38,6 +48,24 @@ namespace BlogProjectWebApi.Controllers
                 result.ResultObject = null;
                 return result;
             }
+        }
+        public List<PostTag> GetPostTagById(int postId)
+        {
+            List<PostTag> postTags =_postTagRepository.GetPostTag(postId);
+            foreach (var item in postTags)
+            {
+                item.Tag = _TagRepository.Get(item.TagId);
+            }
+            return postTags;
+        }
+        public List<PostCategory> GetPostCategory(int postId)
+        {
+            List<PostCategory> postCategory = _postCategoryRepository.GetPostCategory(postId);
+            foreach (var item in postCategory)
+            {
+                item.Category = _CategoryRepository.Get(item.CategoryId);
+            }
+            return postCategory;
         }
 
         [HttpGet]

@@ -75,6 +75,11 @@ namespace BlogProjectWebApi.Repository
             return _context.postCategories.FirstOrDefault(e => e.Id == id);
         }
 
+        public List<PostCategory> GetPostCategory(int postId)
+        {
+            return _context.postCategories.Where(e => e.Id == postId).ToList();
+        }
+
         public List<PostCategory> List()
         {
             return _context.postCategories.ToList();

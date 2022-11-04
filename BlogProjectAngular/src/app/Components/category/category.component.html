@@ -2,8 +2,8 @@
     <h1 style="margin-top: 30px; margin-left: 30px;">Category</h1>
     
     <p>&nbsp;</p>
-    <mat-form-field appearance="outline" style="margin-left: 20px;">
-      <input matInput placeholder="Search" >
+    <mat-form-field appearance="outline" style="margin-left: 20px; width: 100em; ">
+      <input matInput placeholder="Search" (keyup)="CategoryFilter($event)">
     </mat-form-field>
     <button mat-flat-button color="primary" style="margin-left: 10px;margin-right: 50px; margin-top: 20px; float: right;">
       <mat-icon aria-label="label" matTooltip="Add Category" (click)="CategoryAdd()" >add</mat-icon>
@@ -48,9 +48,11 @@
       <ng-container matColumnDef="operations">
         <mat-header-cell *matHeaderCellDef> Operations
         </mat-header-cell>
-        <mat-cell *matCellDef="let kayit"> 
+        <mat-cell *matCellDef="let data"> 
           <button mat-icon-button>
-            <mat-icon aria-label="label" color="primary" matTooltip="" >question_answer</mat-icon>
+            <mat-icon aria-label="label" class="primary" matTooltip="" (click)="CategoryUpdate(data)" >edit</mat-icon>
+            &nbsp;
+            <mat-icon aria-label="label" color="warn" matTooltip="" (click)="CategoryRemove(data)" >delete</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
@@ -59,7 +61,8 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       
     </mat-table>
+    
     <mat-paginator 
-      [pageSizeOptions]="[10, 25, 100]">
+      [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons="true">
     </mat-paginator>
   </div>

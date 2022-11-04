@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostTagComponent } from './post-tag.component';
+import { TagDialogComponent } from './tag-dialog.component';
 
-describe('PostTagComponent', () => {
-  let component: PostTagComponent;
-  let fixture: ComponentFixture<PostTagComponent>;
+describe('TagDialogComponent', () => {
+  let component: TagDialogComponent;
+  let fixture: ComponentFixture<TagDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PostTagComponent ]
+      declarations: [ TagDialogComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PostTagComponent);
+    fixture = TestBed.createComponent(TagDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

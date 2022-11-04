@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace BlogProjectWebApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class TagController : ApiController
     {
         private TagRepository _repo = new TagRepository();
@@ -74,20 +76,9 @@ namespace BlogProjectWebApi.Controllers
         public ResultClass AddTag(Tag item)
         {
             ResultClass response = new ResultClass();
-            if (ModelState.IsValid)
-            {
-                response = _repo.Add(item);
-                return response;
-            }
-            else
-            {
-                response.Result = false;
-                response.ResultMessages = new List<string>(){
-                    "Tag is not added. Please send to required prop"
-                };
-                response.ResultObject = null;
-                return response;
-            }
+            response = _repo.Add(item);
+            //return Request.CreateResponse(HttpStatusCode.OK, "Ekleme Başarılı");
+            return response;
         }
         [HttpPut]
         [Route("api/tag/updateTag/{Id}")]
