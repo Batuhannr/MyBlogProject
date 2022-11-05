@@ -7,6 +7,11 @@ namespace BlogProjectWebApi.Models
 {
     public class ResultClass
     {
+        public ResultClass()
+        {
+            ResultMessages = new List<string>();
+        }
+
         public bool Result { get; set; }
         public List<string> ResultMessages { get; set; }
 

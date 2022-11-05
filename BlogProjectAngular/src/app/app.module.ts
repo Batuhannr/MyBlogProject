@@ -15,6 +15,7 @@ import { CategoryDialogComponent } from './Components/Dialogs/category-dialog/ca
 import { MyAlerDialogComponent } from './Components/Dialogs/my-aler-dialog/my-aler-dialog.component';
 import { ConfirmDialogComponent } from './Components/Dialogs/confirm-dialog/confirm-dialog.component';
 import { TagDialogComponent } from './Components/Dialogs/tag-dialog/tag-dialog.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { TagDialogComponent } from './Components/Dialogs/tag-dialog/tag-dialog.c
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    EditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
