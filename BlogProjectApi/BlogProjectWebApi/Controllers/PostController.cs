@@ -1,5 +1,6 @@
 ﻿using BlogProjectWebApi.Models;
 using BlogProjectWebApi.Repository;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,67 @@ namespace BlogProjectWebApi.Controllers
 {
     public class PostController : ApiController
     {
-        private PostRepository _repo = new PostRepository();
-        private PostTagRepository _postTagRepository = new PostTagRepository();
-        private PostCategoryRepository _postCategoryRepository = new PostCategoryRepository();
-        private TagRepository _TagRepository = new TagRepository();
-        private CategoryRepository _CategoryRepository = new CategoryRepository();
+
+        private PostRepository repo;
+        private PostRepository _repo
+        {
+            get
+            {
+                if (repo == null)
+                    repo = new PostRepository();
+                return repo;
+            }
+        }
+
+
+        private TagRepository TagRepository;
+        private TagRepository _TagRepository
+        {
+            get
+            {
+                if (TagRepository == null)
+                    TagRepository = new TagRepository();
+                return TagRepository;
+            }
+        }
+
+
+        private CategoryRepository CategoryRepository;
+        private CategoryRepository _CategoryRepository
+        {
+            get
+            {
+                if (CategoryRepository == null)
+                    CategoryRepository = new CategoryRepository();
+                return CategoryRepository;
+            }
+        }
+
+
+
+        private PostTagRepository postTagRepository;
+        private PostTagRepository _postTagRepository
+        {
+            get
+            {
+                if (postTagRepository == null)
+                    postTagRepository = new PostTagRepository();
+                return postTagRepository;
+            }
+        }
+
+
+
+        private PostCategoryRepository postCategoryRepository;
+        private PostCategoryRepository _postCategoryRepository
+        {
+            get
+            {
+                if (postCategoryRepository == null)
+                    postCategoryRepository = new PostCategoryRepository();
+                return postCategoryRepository;
+            }
+        }
 
         [HttpGet]
         [Route("api/post/get")]
@@ -51,7 +108,7 @@ namespace BlogProjectWebApi.Controllers
         }
         public List<PostTag> GetPostTagById(int postId)
         {
-            List<PostTag> postTags =_postTagRepository.GetPostTag(postId);
+            List<PostTag> postTags = _postTagRepository.GetPostTag(postId);
             foreach (var item in postTags)
             {
                 item.Tag = _TagRepository.Get(item.TagId);
@@ -81,7 +138,11 @@ namespace BlogProjectWebApi.Controllers
                 {
                     "Post Loaded"
                 };
+                comment.PostTags = GetPostTagById(comment.Id);
+                comment.PostCategories = GetPostCategory(comment.Id);
                 result.ResultObject = comment;
+
+
                 return result;
 
             }
@@ -101,20 +162,16 @@ namespace BlogProjectWebApi.Controllers
         [Route("api/post/addPost")]
         public ResultClass AddPost(Post item)
         {
-            ResultClass response = new ResultClass();
-            if (ModelState.IsValid)
+            try
             {
+                ResultClass response = new ResultClass();
                 response = _repo.Add(item);
                 return response;
             }
-            else
+            catch (Exception e)
             {
-                response.Result = false;
-                response.ResultMessages = new List<string>(){
-                    "Post is not added. Please send to required prop"
-                };
-                response.ResultObject = null;
-                return response;
+
+                throw e;
             }
         }
         [HttpPut]

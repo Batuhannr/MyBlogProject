@@ -6,11 +6,10 @@ using System.Web;
 
 namespace BlogProjectWebApi.Models
 {
-    public class BaseEntity
+    public class BaseEntity : EnBaseEntity
     {
 
-        [Key]
-        public int Id { get; set; }
+
         public bool IsPublished { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime LastModifiedOn { get; set; }

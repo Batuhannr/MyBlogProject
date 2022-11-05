@@ -81,6 +81,11 @@ namespace BlogProjectWebApi.Repository
             return _context.Comments.ToList();
 
         }
+        public List<Comment> PostComment(int Id)
+        {
+            return _context.Comments.Where(s=>s.ParentPost.Id == Id).ToList();
+
+        }
 
         public ResultClass Update(Comment item, int id)
         {

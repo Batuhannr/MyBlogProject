@@ -3,6 +3,7 @@ using BlogProjectWebApi.IRepository;
 using BlogProjectWebApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -18,8 +19,9 @@ namespace BlogProjectWebApi.Repository
             item.PublishedOn = DateTime.Now;
             _context.Posts.Add(item);
             int resultBool = _context.SaveChanges();
+
             ResultClass result = new ResultClass();
-            if (resultBool == 1)
+            if (resultBool >= 1)
             {
                 result.Result = true;
                 result.ResultMessages = new List<string>()

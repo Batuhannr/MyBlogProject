@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
+  public editorValue: string = '';
+
   constructor() { }
 
   ngOnInit(): void {

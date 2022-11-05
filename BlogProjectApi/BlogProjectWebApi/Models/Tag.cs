@@ -13,6 +13,6 @@ namespace BlogProjectWebApi.Models
         public string Title { get; set; }
         [Required]
         public string Description { get; set; }
-        public List<PostTag> PostTags { get; set; }
+        
     }
 }

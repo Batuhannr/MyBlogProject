@@ -8,6 +8,13 @@ namespace BlogProjectWebApi.Models
 {
     public class Post : BaseEntity
     {
+        public Post()
+        {
+            PostTags = new List<PostTag>();
+            PostCategories = new List<PostCategory>();
+            Comments = new List<Comment>();
+        }
+
         [Required]
         public string Title { get; set; }
         [Required]

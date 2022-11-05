@@ -6,10 +6,9 @@ using System.Web;
 
 namespace BlogProjectWebApi.Models
 {
-    public class PostCategory
+    public class PostCategory : EnBaseEntity
     {
-        [Key]
-        public int Id { get; set; }
+
         [Required]
         public int PostId { get; set; }
         public Post Post { get; set; }
