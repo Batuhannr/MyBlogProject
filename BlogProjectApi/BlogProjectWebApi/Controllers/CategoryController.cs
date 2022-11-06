@@ -1,4 +1,5 @@
-﻿using BlogProjectWebApi.Models;
+﻿using BlogProjectWebApi.Context;
+using BlogProjectWebApi.Models;
 using BlogProjectWebApi.Repository;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,8 @@ namespace BlogProjectWebApi.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CategoryController : ApiController
     {
-        private CategoryRepository _repo = new CategoryRepository();
+        private CategoryRepository _repo = new CategoryRepository(new BlogDbContext());
+
         [HttpGet]
         [Route("api/category/get")]
         public ResultClass GetCategory()
@@ -82,6 +84,9 @@ namespace BlogProjectWebApi.Controllers
         [Route("api/category/addCategory")]
         public ResultClass PostCategory(Category category)
         {
+            category.CreatedOn = DateTime.Now;
+            category.LastModifiedOn = DateTime.Now;
+            category.PublishedOn = DateTime.Now;
             ResultClass response = new ResultClass();
             response = _repo.Add(category);
             //return Request.CreateResponse(HttpStatusCode.OK, "Ekleme Başarılı");

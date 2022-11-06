@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form >
+
+                <mat-form-field appearance="outline" style="margin-left: 20px; width: 100em; ">
+                    <mat-label>Post Title</mat-label>
+                    <input matInput placeholder="Post Title" name="title" #title>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="margin-left: 20px; width: 100em; ">
+                    <mat-label>Post Summary</mat-label>
+                    <input matInput placeholder="Summary" name="summary" #summary>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="margin-left: 20px; width: 100em; ">
+                    <mat-label>Category</mat-label>
+                    <mat-select [formControl]="toppings" multiple #categories>
+                        <mat-option *ngFor="let cate of category" [value]="cate.Id" >{{cate.Title}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="margin-left: 20px; width: 100em; ">
+                    <mat-label>Tag</mat-label>
+                    <mat-select [formControl]="toppings" multiple #tags>
+                        <mat-option *ngFor="let tag of tag" [value]="tag.Id" >{{tag.Title}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <ckeditor
+                    [(ngModel)]="ckeditorContent" name="content" #content>
+                </ckeditor>
+                <!-- <editor
+                id="content"
+                apiKey="aqhcfdbpfdjy57owzv0koti3iuodete96hgf0g5yv968ss5r"
+                [init]="{
+                    height: 500,
+                    menubar: true,
+                    plugins: [
+                    'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect'
+                    ],
+                    toolbar:
+                    'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat'
+                }"></editor> -->
+                <div class="col-md-12" style="margin-top: 1rem; margin-right: 2rem;float: right;">
+                    <mat-checkbox name="published" [labelPosition]="labelPosition" #published>Is Published</mat-checkbox>
+                    &nbsp;
+                    <button mat-raised-button color="primary" (click)="btnSaveClick(title.value,summary.value,content.value,published.checked,tags.value,categories.value)" >Save Post</button>
+                    &nbsp;
+                    <button mat-raised-button color="warn" >Cancel</button>
+                    &nbsp;
+                    <button mat-raised-button color="accent">Clear</button>
+                </div>
+            </form>
+                
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

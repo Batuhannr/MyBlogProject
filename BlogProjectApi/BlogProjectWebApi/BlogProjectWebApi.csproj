@@ -190,6 +190,10 @@
     <Compile Include="Migrations\202210231424360_post_category_id.designer.cs">
       <DependentUpon>202210231424360_post_category_id.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211061725192_mig6112022.cs" />
+    <Compile Include="Migrations\202211061725192_mig6112022.designer.cs">
+      <DependentUpon>202211061725192_mig6112022.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Category.cs" />
@@ -233,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202210231424360_post_category_id.resx">
       <DependentUpon>202210231424360_post_category_id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211061725192_mig6112022.resx">
+      <DependentUpon>202211061725192_mig6112022.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

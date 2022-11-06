@@ -1,4 +1,5 @@
-﻿using BlogProjectWebApi.Models;
+﻿using BlogProjectWebApi.Context;
+using BlogProjectWebApi.Models;
 using BlogProjectWebApi.Repository;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace BlogProjectWebApi.Controllers
 {
     public class PostCategoryController : ApiController
     {
-        private PostCategoryRepository _repo = new PostCategoryRepository();
+        private PostCategoryRepository _repo = new PostCategoryRepository(new BlogDbContext());
 
         [HttpGet]
         [Route("api/postcategory/get")]

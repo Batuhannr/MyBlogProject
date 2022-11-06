@@ -21,8 +21,8 @@ namespace BlogProjectWebApi.Models
         public string Summary { get; set; }
         [Required]
         public string PostContents { get; set; }
-        public List<PostTag> PostTags { get; set; }
-        public List<PostCategory> PostCategories { get; set; }
-        public List<Comment> Comments { get; set; }
+        public ICollection<PostTag> PostTags { get; set; }
+        public ICollection<PostCategory> PostCategories { get; set; }
+        public ICollection<Comment> Comments { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using BlogProjectWebApi.Models;
+﻿using BlogProjectWebApi.Context;
+using BlogProjectWebApi.Models;
 using BlogProjectWebApi.Repository;
 using System;
 using System.Collections.Generic;
@@ -10,8 +11,7 @@ namespace BlogProjectWebApi.Controllers
 {
     public class CommentController : ApiController
     {
-        private CommentRepository _repo = new CommentRepository();
-
+        private CommentRepository _repo = new CommentRepository(new BlogDbContext());
         [HttpGet]
         [Route("api/comment/get")]
         public ResultClass GetComment()

@@ -1,4 +1,5 @@
-﻿using BlogProjectWebApi.Models;
+﻿using BlogProjectWebApi.Context;
+using BlogProjectWebApi.Models;
 using BlogProjectWebApi.Repository;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,8 @@ namespace BlogProjectWebApi.Controllers
 {
     public class PostTagController : ApiController
     {
-        private PostTagRepository _repo = new PostTagRepository();
+        public static BlogDbContext _context = new BlogDbContext();
+        private PostTagRepository _repo = new PostTagRepository(_context) ;
 
         [HttpGet]
         [Route("api/postTag/get")]

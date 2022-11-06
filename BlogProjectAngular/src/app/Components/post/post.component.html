@@ -1,12 +1,73 @@
-<h1>TinyMCE 5 Angular Demo</h1>
- <editor
- apiKey="aqhcfdbpfdjy57owzv0koti3iuodete96hgf0g5yv968ss5r"
-   [init]="{height: 500,menubar: true,
-     plugins: [
-     'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect',
-     ],
-     toolbar:
-     'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat'
-   }"
-   
- ></editor>
+<div class="containers">
+  <h1 style="margin-top: 30px; margin-left: 30px;">Post</h1>
+  
+  <p>&nbsp;</p>
+  <mat-form-field appearance="outline" style="margin-left: 20px; width: 100em; ">
+    <input matInput placeholder="Search" (keyup)="PostFilter($event)">
+  </mat-form-field>
+  <button mat-flat-button color="primary" style="margin-left: 10px;margin-right: 50px; margin-top: 20px; float: right;">
+    <mat-icon aria-label="label" matTooltip="Add Post" [routerLink]="['/addPost']" >add</mat-icon>
+  </button>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
+    
+    <ng-container matColumnDef="Id" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Post Id
+      </mat-header-cell>
+      <mat-cell *matCellDef="let posts"> {{posts.Id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Title" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Post Title 
+      </mat-header-cell>
+      <mat-cell *matCellDef="let posts"> {{posts.Title}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="PostContents" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Post Contents
+      </mat-header-cell>
+      <mat-cell *matCellDef="let posts"> {{posts.PostContents | slice:0:30 }}... </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="IsPublished" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Published
+      </mat-header-cell>
+      <mat-cell *matCellDef="let posts"><mat-checkbox checked="{{posts.IsPublished}}" style="padding-left: 30%;"></mat-checkbox>  </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="CreatedOn" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Created 
+      </mat-header-cell>
+      <mat-cell *matCellDef="let posts"> {{posts.CreatedOn}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="LastModifiedOn" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Last Modified 
+      </mat-header-cell>
+      <mat-cell *matCellDef="let posts"> {{posts.LastModifiedOn}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="PublishedOn" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Published
+      </mat-header-cell>
+      <mat-cell *matCellDef="let posts"> {{posts.PublishedOn}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Summary" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Summary
+      </mat-header-cell>
+      <mat-cell *matCellDef="let posts"> {{posts.Summary}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="operations">
+      <mat-header-cell *matHeaderCellDef> Operations
+      </mat-header-cell>
+      <mat-cell *matCellDef="let data"> 
+        <button mat-icon-button>
+          <mat-icon aria-label="label" class="primary" matTooltip="" (click)="PostUpdate(data)" >edit</mat-icon>
+          &nbsp;
+          <mat-icon aria-label="label" color="warn" matTooltip="" (click)="PostRemove(data)" >delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    
+  </mat-table>
+  
+  <mat-paginator 
+    [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons="true">
+  </mat-paginator>
+</div>
