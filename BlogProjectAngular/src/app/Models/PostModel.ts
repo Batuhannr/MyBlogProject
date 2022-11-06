@@ -10,7 +10,7 @@ export class PostModel{
     PublishedOn? : Date;
     Title ?: string;
     Summary ?: string;
-    PostContents ?: string;
+    PostContents !: string;
     PostTags?: PostTagModel[];
     PostCategories ?: PostCategory[];
     Comments ?: CommentModel[];

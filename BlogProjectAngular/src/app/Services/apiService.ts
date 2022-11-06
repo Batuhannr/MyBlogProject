@@ -51,6 +51,9 @@ public TagRemove(categoryId: number){
 public getPost() : Observable<ResultModel>{
   return this.http.get<ResultModel>(this.url+ "post/get");
 }
+public getPostById(postId:number): Observable<ResultModel>{
+  return this.http.get<ResultModel>(this.url+ "post/get/" + postId);
+}
 public addPost(post : PostModel) : Observable<ResultModel>{
   return this.http.post<ResultModel>(this.url+ "post/addPost", post);
   

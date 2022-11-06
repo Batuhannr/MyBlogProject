@@ -21,6 +21,11 @@ import { AddPostComponent } from './Components/add-post/add-post.component';
 import { FormsModule } from '@angular/forms';
 
 import { CKEditorModule } from 'ng2-ckeditor';
+import { PostPriviewComponentComponent } from './Components/post-priview-component/post-priview-component.component';
+import { HomePageComponent } from './Components/UserInterface/home-page/home-page.component';
+import { AdminComponent } from './Components/admin/admin.component';
+import { MainNavUserInterfaceComponent } from './Components/UserInterface/main-nav-user-interface/main-nav-user-interface.component';
+import { FooterComponent } from './Components/UserInterface/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +36,11 @@ import { CKEditorModule } from 'ng2-ckeditor';
     PostComponent,
     TagComponent,
     AddPostComponent,
+    PostPriviewComponentComponent,
+    HomePageComponent,
+    AdminComponent,
+    MainNavUserInterfaceComponent,
+    FooterComponent,
     
     
 
