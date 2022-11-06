@@ -6,7 +6,7 @@
     <input matInput placeholder="Search" (keyup)="PostFilter($event)">
   </mat-form-field>
   <button mat-flat-button color="primary" style="margin-left: 10px;margin-right: 50px; margin-top: 20px; float: right;">
-    <mat-icon aria-label="label" matTooltip="Add Post" [routerLink]="['/addPost']" >add</mat-icon>
+    <mat-icon aria-label="label" matTooltip="Add Post" [routerLink]="['/admin/addPost']" >add</mat-icon>
   </button>
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
     
