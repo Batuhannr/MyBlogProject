@@ -16,6 +16,11 @@ import { MyAlerDialogComponent } from './Components/Dialogs/my-aler-dialog/my-al
 import { ConfirmDialogComponent } from './Components/Dialogs/confirm-dialog/confirm-dialog.component';
 import { TagDialogComponent } from './Components/Dialogs/tag-dialog/tag-dialog.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { PostDialogComponent } from './Components/Dialogs/post-dialog/post-dialog.component';
+import { AddPostComponent } from './Components/add-post/add-post.component';
+import { FormsModule } from '@angular/forms';
+
+import { CKEditorModule } from 'ng2-ckeditor';
 
 @NgModule({
   declarations: [
@@ -25,6 +30,9 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     CommentComponent,
     PostComponent,
     TagComponent,
+    AddPostComponent,
+    
+    
 
 
 
@@ -32,7 +40,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     CategoryDialogComponent,
     MyAlerDialogComponent,
     ConfirmDialogComponent,
-    TagDialogComponent
+    TagDialogComponent,
+    PostDialogComponent
 
   ],
   imports: [
@@ -41,9 +50,12 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    EditorModule
+    EditorModule,
+    FormsModule,
+    CKEditorModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

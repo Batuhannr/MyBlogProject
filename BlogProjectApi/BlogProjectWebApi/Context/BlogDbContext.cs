@@ -21,23 +21,23 @@ namespace BlogProjectWebApi.Context
         public DbSet<Tag> Tags { get; set; }
 
 
-        public override int SaveChanges()
-        {
-            var degler = this.ChangeTracker.Entries().Where(s => s.State == EntityState.Added || s.State == EntityState.Modified).ToList();
+        //public override int SaveChanges()
+        //{
+        //    var degler = this.ChangeTracker.Entries().Where(s => s.State == EntityState.Added || s.State == EntityState.Modified).ToList();
 
-            foreach (var deg in degler)
-            {
-                var dddd = deg.Entity.GetType().GetProperty("LastModifiedOn");
-                if (dddd != null)
-                {
-                    BaseEntity model = (BaseEntity)deg.Entity;
-                    model.LastModifiedOn = DateTime.Now;
-                }
-            }
+        //    foreach (var deg in degler)
+        //    {
+        //        var dddd = deg.Entity.GetType().GetProperty("LastModifiedOn");
+        //        if (dddd != null)
+        //        {
+        //            BaseEntity model = (BaseEntity)deg.Entity;
+        //            model.LastModifiedOn = DateTime.Now;
+        //        }
+        //    }
 
 
-            return base.SaveChanges();  
-        }
+        //    return base.SaveChanges();  
+        //}
 
     }
 }

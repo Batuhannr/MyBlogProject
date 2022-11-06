@@ -1,4 +1,5 @@
-﻿using BlogProjectWebApi.Models;
+﻿using BlogProjectWebApi.Context;
+using BlogProjectWebApi.Models;
 using BlogProjectWebApi.Repository;
 using Newtonsoft.Json;
 using System;
@@ -6,72 +7,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace BlogProjectWebApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PostController : ApiController
     {
-
-        private PostRepository repo;
-        private PostRepository _repo
-        {
-            get
-            {
-                if (repo == null)
-                    repo = new PostRepository();
-                return repo;
-            }
-        }
-
-
-        private TagRepository TagRepository;
-        private TagRepository _TagRepository
-        {
-            get
-            {
-                if (TagRepository == null)
-                    TagRepository = new TagRepository();
-                return TagRepository;
-            }
-        }
-
-
-        private CategoryRepository CategoryRepository;
-        private CategoryRepository _CategoryRepository
-        {
-            get
-            {
-                if (CategoryRepository == null)
-                    CategoryRepository = new CategoryRepository();
-                return CategoryRepository;
-            }
-        }
-
-
-
-        private PostTagRepository postTagRepository;
-        private PostTagRepository _postTagRepository
-        {
-            get
-            {
-                if (postTagRepository == null)
-                    postTagRepository = new PostTagRepository();
-                return postTagRepository;
-            }
-        }
-
-
-
-        private PostCategoryRepository postCategoryRepository;
-        private PostCategoryRepository _postCategoryRepository
-        {
-            get
-            {
-                if (postCategoryRepository == null)
-                    postCategoryRepository = new PostCategoryRepository();
-                return postCategoryRepository;
-            }
-        }
+        public static BlogDbContext _context = new BlogDbContext();
+        private PostRepository _repo = new PostRepository(_context);
+        private TagRepository _TagRepository = new TagRepository(_context) ;
+        private CategoryRepository _CategoryRepository = new CategoryRepository(_context) ;
+        private PostTagRepository _postTagRepository = new PostTagRepository(_context) ;
+        private PostCategoryRepository _postCategoryRepository = new PostCategoryRepository(_context) ;
 
         [HttpGet]
         [Route("api/post/get")]
@@ -111,7 +59,7 @@ namespace BlogProjectWebApi.Controllers
             List<PostTag> postTags = _postTagRepository.GetPostTag(postId);
             foreach (var item in postTags)
             {
-                item.Tag = _TagRepository.Get(item.TagId);
+                //item.Tag = _TagRepository.Get(item.TagId);
             }
             return postTags;
         }
@@ -120,7 +68,7 @@ namespace BlogProjectWebApi.Controllers
             List<PostCategory> postCategory = _postCategoryRepository.GetPostCategory(postId);
             foreach (var item in postCategory)
             {
-                item.Category = _CategoryRepository.Get(item.CategoryId);
+                //item.Category = _CategoryRepository.Get(item.CategoryId);
             }
             return postCategory;
         }
@@ -162,6 +110,9 @@ namespace BlogProjectWebApi.Controllers
         [Route("api/post/addPost")]
         public ResultClass AddPost(Post item)
         {
+            item.CreatedOn =new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day);
+            item.LastModifiedOn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            item.PublishedOn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             try
             {
                 ResultClass response = new ResultClass();

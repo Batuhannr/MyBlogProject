@@ -11,8 +11,8 @@ namespace BlogProjectWebApi.Models
 
 
         public bool IsPublished { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public DateTime LastModifiedOn { get; set; }
-        public DateTime PublishedOn { get; set; }
+        public DateTime? CreatedOn { get; set; }
+        public DateTime? LastModifiedOn { get; set; }
+        public DateTime? PublishedOn { get; set; }
     }
 }

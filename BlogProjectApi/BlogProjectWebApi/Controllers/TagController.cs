@@ -1,4 +1,5 @@
-﻿using BlogProjectWebApi.Models;
+﻿using BlogProjectWebApi.Context;
+using BlogProjectWebApi.Models;
 using BlogProjectWebApi.Repository;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,9 @@ namespace BlogProjectWebApi.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class TagController : ApiController
     {
-        private TagRepository _repo = new TagRepository();
+        public static BlogDbContext _context = new BlogDbContext();
+
+        private TagRepository _repo  = new TagRepository(_context);
 
         [HttpGet]
         [Route("api/tag/get")]
@@ -75,6 +78,9 @@ namespace BlogProjectWebApi.Controllers
         [Route("api/tag/addTag")]
         public ResultClass AddTag(Tag item)
         {
+            item.CreatedOn = DateTime.Now;
+            item.LastModifiedOn = DateTime.Now;
+            item.PublishedOn = DateTime.Now;
             ResultClass response = new ResultClass();
             response = _repo.Add(item);
             //return Request.CreateResponse(HttpStatusCode.OK, "Ekleme Başarılı");

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CategoryComponent } from '../Components/category/category.component';
 import { CategoryModel } from '../Models/CategoryModel';
+import { PostModel } from '../Models/PostModel';
 import { ResultModel } from '../Models/ResultModel';
 import { TagModel } from '../Models/TagModel';
 
@@ -44,6 +45,21 @@ public TagUpdate(tag : TagModel,categoryId : number){
 }
 public TagRemove(categoryId: number){
   return this.http.delete(this.url + "tag/removeTag/"+ categoryId);
+}
+
+
+public getPost() : Observable<ResultModel>{
+  return this.http.get<ResultModel>(this.url+ "post/get");
+}
+public addPost(post : PostModel) : Observable<ResultModel>{
+  return this.http.post<ResultModel>(this.url+ "post/addPost", post);
+  
+}
+public PostUpdate(post: PostModel,postId : number){
+  return this.http.put(this.url+"post/updatePost/" + postId,post);
+}
+public PostRemove(postId: number){
+  return this.http.delete(this.url + "post/removePost/"+ postId);
 }
   
 }
