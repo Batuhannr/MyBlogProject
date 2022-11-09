@@ -7,6 +7,7 @@ import { PostPriviewComponentComponent } from './Components/post-priview-compone
 import { PostComponent } from './Components/post/post.component';
 import { TagComponent } from './Components/tag/tag.component';
 import { HomePageComponent } from './Components/UserInterface/home-page/home-page.component';
+import { ReadPostComponent } from './Components/UserInterface/read-post/read-post.component';
 
 const routes: Routes = [
   {path: "", component: HomePageComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: "admin/Post", component: PostComponent},
   {path: "admin/addPost", component: AddPostComponent},
   {path: "admin/post/get/postprew", component: PostPriviewComponentComponent},
+  {path: "readpost" , component: ReadPostComponent}
 ];
 
 @NgModule({

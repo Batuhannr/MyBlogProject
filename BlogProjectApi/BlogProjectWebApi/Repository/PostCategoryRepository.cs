@@ -83,7 +83,7 @@ namespace BlogProjectWebApi.Repository
 
         public List<PostCategory> GetPostCategory(int postId)
         {
-            return _context.postCategories.Where(e => e.Id == postId).ToList();
+            return _context.postCategories.Where(e => e.PostId == postId).ToList();
         }
 
         //public List<PostCategory> List()

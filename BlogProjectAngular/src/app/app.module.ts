@@ -26,6 +26,7 @@ import { HomePageComponent } from './Components/UserInterface/home-page/home-pag
 import { AdminComponent } from './Components/admin/admin.component';
 import { MainNavUserInterfaceComponent } from './Components/UserInterface/main-nav-user-interface/main-nav-user-interface.component';
 import { FooterComponent } from './Components/UserInterface/footer/footer.component';
+import { ReadPostComponent } from './Components/UserInterface/read-post/read-post.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { FooterComponent } from './Components/UserInterface/footer/footer.compon
     AdminComponent,
     MainNavUserInterfaceComponent,
     FooterComponent,
-    
+    ReadPostComponent,
     
 
 

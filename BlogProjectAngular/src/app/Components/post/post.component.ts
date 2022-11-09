@@ -35,6 +35,7 @@ export class PostComponent implements OnInit {
     if(this.dataSource.paginator){
       this.dataSource.paginator.firstPage();
     }
+    
   }
   GetPost() {
     this.apiServis.getPost().
@@ -42,7 +43,7 @@ export class PostComponent implements OnInit {
         this.posts = result.ResultObject as PostModel[];
         this.dataSource = new MatTableDataSource( this.posts);
       this.dataSource.paginator = this.paginator;
-
+      console.log(this.posts)
       });
   }
   PostAdd(){
