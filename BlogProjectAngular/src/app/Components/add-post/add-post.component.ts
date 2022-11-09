@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Observable, Subscriber } from 'rxjs';
 import { CategoryModel } from 'src/app/Models/CategoryModel';
 import { PostCategory } from 'src/app/Models/PostCategory';
 import { PostModel } from 'src/app/Models/PostModel';
@@ -22,16 +24,21 @@ export class AddPostComponent implements OnInit {
   category: CategoryModel[] = [];
   newCategories: CategoryModel[] = [];
   toppings = new FormControl('');
+  imageSource ?:string;
+  myImage?: Observable<any>;
+  baseImageString?: string;
 
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   constructor(
     public apiServis : ApiService,
+    private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit(): void {
     this.GetTag();
     this.GetCategory();
   }
+  
   ckeditorContent = "Hello";
   GetTag() {
     this.apiServis.getTag().
@@ -45,6 +52,7 @@ export class AddPostComponent implements OnInit {
         this.category = result.ResultObject as CategoryModel[];
       });
   }
+  
   btnSaveClick(title: string, summary : string ,contents: string,published : boolean,tags: number[],categories :number[] ){
     this.newTags = [];
     this.newCategories = [];
@@ -64,10 +72,39 @@ export class AddPostComponent implements OnInit {
     });
     this.post.PostTags = this.newTags;
     this.post.PostCategories = this.newCategories;
+    this.post.PostHeaderImage = this.baseImageString;
     this.apiServis.addPost(this.post).subscribe((s:ResultModel)=>{
       alert(s);
     })
     
+    
+  }
+  onChanged($event: any) {
+    const file = $event.target.files[0];
+    this.convertToBase64(file);
+  }
+
+  convertToBase64(file: File) {
+    this.myImage = new Observable((subscriber: Subscriber<any>) => {
+      this.readFile(file, subscriber);
+    });
+  }
+
+  readFile(file: File, subscriber: Subscriber<any>) {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = () => {
+      subscriber.next(fileReader.result);
+      subscriber.complete();
+      this.baseImageString = fileReader.result as string
+    };
+
+
+    fileReader.onerror = (error) => {
+      subscriber.error(error);
+      subscriber.complete();
+    };
   }
 
 }

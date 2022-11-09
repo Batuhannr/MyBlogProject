@@ -57,7 +57,10 @@
                     <button mat-raised-button color="accent">Clear</button>
                 </div>
             </form>
-                
+            <input type="file" (change)="onChanged($event)" />
+            <div *ngIf="myImage">
+              <img width="300" alt="Angular Logo" [src]="myImage | async" />
+            </div>  
             </div>
         </div>
     </div>

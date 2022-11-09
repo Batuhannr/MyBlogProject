@@ -194,6 +194,10 @@
     <Compile Include="Migrations\202211061725192_mig6112022.designer.cs">
       <DependentUpon>202211061725192_mig6112022.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211071844433_postHeaderImageAdd.cs" />
+    <Compile Include="Migrations\202211071844433_postHeaderImageAdd.designer.cs">
+      <DependentUpon>202211071844433_postHeaderImageAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Category.cs" />
@@ -240,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211061725192_mig6112022.resx">
       <DependentUpon>202211061725192_mig6112022.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211071844433_postHeaderImageAdd.resx">
+      <DependentUpon>202211071844433_postHeaderImageAdd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -11,6 +11,7 @@ export class PostModel{
     Title ?: string;
     Summary ?: string;
     PostContents !: string;
+    PostHeaderImage ?: string;
     PostTags?: PostTagModel[];
     PostCategories ?: PostCategory[];
     Comments ?: CommentModel[];

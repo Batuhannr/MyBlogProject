@@ -64,5 +64,9 @@ public PostUpdate(post: PostModel,postId : number){
 public PostRemove(postId: number){
   return this.http.delete(this.url + "post/removePost/"+ postId);
 }
+
+public getlastCountPost(count : number) : Observable<PostModel[]>{
+  return this.http.get<PostModel[]>(this.url+ "userinterface/getlastposts/" + count);
+}
   
 }
