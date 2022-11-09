@@ -25,6 +25,19 @@ namespace BlogProjectWebApi.Repository
             
             return lastfivepost;
         }
+        public List<Post> mostPopulerPost(int count)
+        {
+            List<Post> lastfivepost = new List<Post>();
+            lastfivepost = _context.Posts.OrderByDescending(s => s.ReadingCount).Take(count).ToList();
+
+            return lastfivepost;
+        }
+
+        public void UpdateReadingCount(int postId)
+        {
+            Post post = _context.Posts.FirstOrDefault(s => s.Id == postId);
+            post.ReadingCount = post.ReadingCount + 1;
+        }
 
     }
 }

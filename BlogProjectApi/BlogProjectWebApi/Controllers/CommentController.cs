@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace BlogProjectWebApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CommentController : ApiController
     {
         private CommentRepository _repo = new CommentRepository(new BlogDbContext());
@@ -73,6 +75,10 @@ namespace BlogProjectWebApi.Controllers
         [Route("api/comment/addComment")]
         public ResultClass AddComment(Comment item)
         {
+            item.IsPublished = true;
+            item.CreatedOn = DateTime.Now;
+            item.LastModifiedOn = DateTime.Now;
+            item.PublishedOn = DateTime.Now;
             ResultClass response = new ResultClass();
             if (ModelState.IsValid)
             {
