@@ -10,4 +10,7 @@ export class CommentModel{
     PostedBy ?: string;
     Parent?: CommentModel;
     ParentPost ?: PostModel;
+    ParentId?: number;
+    PostId?: number;
+    underComments?: CommentModel[];
 }

@@ -14,6 +14,9 @@ namespace BlogProjectWebApi.Models
         [Required]
         public string PostedBy { get; set; }
         public Comment Parent { get; set; }
+        public int? ParentId { get; set; }
         public Post ParentPost { get; set; }
+        public int PostId { get; set; }
+        public ICollection<Comment> underComments { get; set; }
     }
 }

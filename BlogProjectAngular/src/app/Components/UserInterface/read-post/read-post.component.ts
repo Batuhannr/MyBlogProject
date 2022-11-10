@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { CommentModel } from 'src/app/Models/CommentModel';
 import { PostModel } from 'src/app/Models/PostModel';
 import { ResultModel } from 'src/app/Models/ResultModel';
 import { ApiService } from 'src/app/Services/apiService';
@@ -10,15 +11,19 @@ import { ApiService } from 'src/app/Services/apiService';
   styleUrls: ['./read-post.component.css']
 })
 export class ReadPostComponent implements OnInit {
-  post : PostModel = new PostModel();
+  post: PostModel = new PostModel();
   tenPost: PostModel[] = [];
-  constructor(public apiServis : ApiService,private sanitizer: DomSanitizer) { }
+  mostPost: PostModel[] = [];
+  baseComment: CommentModel[] = [];
+  constructor(public apiServis: ApiService, private sanitizer: DomSanitizer) { }
   data!: string;
   safeHtml!: SafeHtml;
+  visible: boolean = false;
   ngOnInit(): void {
     this.GetPost();
     this.loadhtml();
-    this.load10Post();
+    this.load5Post();
+    this.mostPosts();
 
   }
   GetPost() {
@@ -26,19 +31,67 @@ export class ReadPostComponent implements OnInit {
       subscribe((result: ResultModel) => {
         this.post = result.ResultObject as PostModel;
         this.safeHtml = this.sanitizer.bypassSecurityTrustHtml((result.ResultObject as PostModel).PostContents)
-
+        console.log(this.post.Comments)
       });
-
   }
-  loadhtml(){
+  loadhtml() {
     this.data = this.post.PostContents;
     console.log(this.data)
   }
-  load10Post(){
-    this.apiServis.getlastCountPost(5).
+  load5Post() {
+    this.apiServis.getlastCountPostNull(5).
       subscribe((result: PostModel[]) => {
         this.tenPost = result;
         console.log(result);
       });
+  }
+  mostPosts() {
+    this.apiServis.getMostPopularPost(5).
+      subscribe((result: PostModel[]) => {
+        this.mostPost = result;
+        console.log(result);
+      });
+  }
+  addComment(content: string, postedBy: string) {
+    const newComment: CommentModel = new CommentModel();
+    newComment.PostedBy = postedBy;
+    newComment.CommentContents = content;
+    newComment.PostId = 2049;
+    this.apiServis.addComment(newComment).subscribe((s) => {
+      if (s.Result) {
+        alert("Yorum Eklendi");
+      }
+      else {
+        alert("Hata Oluştu");
+      }
+    })
+    this.ngOnInit();
+  }
+  visibleChange(divId: number) {
+    var div = document.getElementById("cevap" + divId);
+    div?.style.removeProperty("display");
+  }
+  addCevap(divId: number, commentId: number, content: string, postby: string) {
+    const newComment: CommentModel = new CommentModel();
+    newComment.PostedBy = postby;
+    newComment.CommentContents = content;
+    newComment.PostId = 2049;
+    newComment.ParentId = commentId;
+    this.apiServis.addComment(newComment).subscribe((s) => {
+      if (s.Result) {
+        alert("Yorum Eklendi");
+        var div = document.getElementById("cevap" + divId);
+        div!.style.display = 'none';
+        this.ngOnInit();
+
+      }
+      else {
+        alert("Hata Oluştu");
+      }
+    })
+  }
+  vazgec(divId: number,){
+    var div = document.getElementById("cevap" + divId);
+    div!.style.display = 'none';
   }
 }

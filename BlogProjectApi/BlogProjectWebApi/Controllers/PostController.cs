@@ -20,6 +20,7 @@ namespace BlogProjectWebApi.Controllers
         private CategoryRepository _CategoryRepository;
         private PostTagRepository _postTagRepository;
         private PostCategoryRepository _postCategoryRepository;
+        private CommentRepository _commentRepository;
         public PostController()
         {
             _context = new BlogDbContext();
@@ -28,6 +29,7 @@ namespace BlogProjectWebApi.Controllers
             _CategoryRepository = new CategoryRepository(_context);
             _postTagRepository = new PostTagRepository(_context);
             _postCategoryRepository = new PostCategoryRepository(_context);
+            _commentRepository = new CommentRepository(_context);
         }
 
         [HttpGet]
@@ -81,6 +83,11 @@ namespace BlogProjectWebApi.Controllers
             }
             return postCategory;
         }
+        public List<Comment> GetPostComment(int postId)
+        {
+            List<Comment> postComment = _commentRepository.getPostComment(postId);
+            return postComment;
+        }
         [HttpGet]
         [Route("api/userinterface/getlastposts/{count}")]
         public List<Post> getlastpost(int count)
@@ -95,24 +102,50 @@ namespace BlogProjectWebApi.Controllers
             }
             return posts;
         }
+        [HttpGet]
+        [Route("api/userinterface/getmostposts/{count}")]
+        public List<Post> getMostPopulerPost(int count)
+        {
+            List<Post> posts = new List<Post>();
+            posts = _repo.mostPopulerPost(count);
+            foreach (var item in posts)
+            {
+                item.PostContents = null;
+
+            }
+            return posts;
+        }
+        [HttpGet]
+        [Route("api/userinterface/getlastpostsnull/{count}")]
+        public List<Post> getlastpostNull(int count)
+        {
+            List<Post> posts = new List<Post>();
+            posts = _repo.lastCountPost(count);
+            foreach (var item in posts)
+            {
+                item.PostContents = null;
+            }
+            return posts;
+        }
 
         [HttpGet]
         [Route("api/post/get/{id}")]
         public ResultClass GetPostById(int id)
         {
-            Post comment = _repo.Get(id);
+            Post post = _repo.Get(id);
             ResultClass result = new ResultClass();
-            if (comment != null)
+            if (post != null)
             {
                 result.Result = true;
                 result.ResultMessages = new List<string>()
                 {
                     "Post Loaded"
                 };
-                comment.PostTags = GetPostTagById(comment.Id);
-                comment.PostCategories = GetPostCategory(comment.Id);
-                result.ResultObject = comment;
-
+                post.PostTags = GetPostTagById(post.Id);
+                post.PostCategories = GetPostCategory(post.Id);
+                post.Comments = GetPostComment(post.Id);
+                result.ResultObject = post;
+                _repo.UpdateReadingCount(id);
 
                 return result;
 
@@ -136,6 +169,7 @@ namespace BlogProjectWebApi.Controllers
             item.CreatedOn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             item.LastModifiedOn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             item.PublishedOn = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            item.ReadingCount = 0;
             try
             {
                 ResultClass response = new ResultClass();

@@ -22,6 +22,7 @@ namespace BlogProjectWebApi.Models
         [Required]
         public string PostContents { get; set; }
         public string PostHeaderImage { get; set; }
+        public int? ReadingCount{ get; set; }
         public ICollection<PostTag> PostTags { get; set; }
         public ICollection<PostCategory> PostCategories { get; set; }
         public ICollection<Comment> Comments { get; set; }

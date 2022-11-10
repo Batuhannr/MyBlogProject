@@ -198,6 +198,14 @@
     <Compile Include="Migrations\202211071844433_postHeaderImageAdd.designer.cs">
       <DependentUpon>202211071844433_postHeaderImageAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211091613417_postId_and_postReadingCount.cs" />
+    <Compile Include="Migrations\202211091613417_postId_and_postReadingCount.designer.cs">
+      <DependentUpon>202211091613417_postId_and_postReadingCount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211091641521_parentId.cs" />
+    <Compile Include="Migrations\202211091641521_parentId.designer.cs">
+      <DependentUpon>202211091641521_parentId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Category.cs" />
@@ -247,6 +255,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211071844433_postHeaderImageAdd.resx">
       <DependentUpon>202211071844433_postHeaderImageAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211091613417_postId_and_postReadingCount.resx">
+      <DependentUpon>202211091613417_postId_and_postReadingCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211091641521_parentId.resx">
+      <DependentUpon>202211091641521_parentId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
