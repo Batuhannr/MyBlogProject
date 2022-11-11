@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { CommentModel } from 'src/app/Models/CommentModel';
 import { PostModel } from 'src/app/Models/PostModel';
 import { ResultModel } from 'src/app/Models/ResultModel';
@@ -15,19 +16,20 @@ export class ReadPostComponent implements OnInit {
   tenPost: PostModel[] = [];
   mostPost: PostModel[] = [];
   baseComment: CommentModel[] = [];
-  constructor(public apiServis: ApiService, private sanitizer: DomSanitizer) { }
+  constructor(public apiServis: ApiService, private sanitizer: DomSanitizer, private route: ActivatedRoute) { }
   data!: string;
   safeHtml!: SafeHtml;
   visible: boolean = false;
+  id!: number;
   ngOnInit(): void {
-    this.GetPost();
+    this.id= this.route.snapshot.params['id'];
+    this.GetPost(this.id);
     this.loadhtml();
     this.load5Post();
     this.mostPosts();
-
   }
-  GetPost() {
-    this.apiServis.getPostById(2049).
+  GetPost(id: number) {
+    this.apiServis.getPostById(id).
       subscribe((result: ResultModel) => {
         this.post = result.ResultObject as PostModel;
         this.safeHtml = this.sanitizer.bypassSecurityTrustHtml((result.ResultObject as PostModel).PostContents)

@@ -49,6 +49,43 @@ namespace BlogProjectWebApi.Controllers
                 {
                     item.PostTags = GetPostTagById(item.Id);
                     item.PostCategories = GetPostCategory(item.Id);
+                    
+
+                }
+                result.ResultObject = Posts;
+                return result;
+            }
+            else
+            {
+                result.Result = false;
+                result.ResultMessages = new List<string>()
+                {
+                    "Post Not Loaded"
+                };
+                result.ResultObject = null;
+                return result;
+            }
+        }
+
+        [HttpGet]
+        [Route("api/post/getnull")]
+        public ResultClass GetPostHeaderImageNull()
+        {
+            List<Post> Posts = _repo.List();
+            ResultClass result = new ResultClass();
+            if (Posts != null)
+            {
+                result.Result = true;
+                result.ResultMessages = new List<string>()
+                {
+                    "Post Loaded"
+                };
+                foreach (var item in Posts)
+                {
+                    item.PostTags = GetPostTagById(item.Id);
+                    item.PostCategories = GetPostCategory(item.Id);
+                    item.PostHeaderImage = null;
+
 
                 }
                 result.ResultObject = Posts;

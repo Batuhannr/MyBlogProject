@@ -52,6 +52,9 @@ export class ApiService {
   public getPost(): Observable<ResultModel> {
     return this.http.get<ResultModel>(this.url + "post/get");
   }
+  public getPostImageNull(): Observable<ResultModel> {
+    return this.http.get<ResultModel>(this.url + "post/getnull");
+  }
   public getPostById(postId: number): Observable<ResultModel> {
     return this.http.get<ResultModel>(this.url + "post/get/" + postId);
   }

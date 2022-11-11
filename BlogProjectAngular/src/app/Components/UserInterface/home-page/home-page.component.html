@@ -116,8 +116,9 @@
   
   
           <!--LAST 5 BLOG -->
-          <div *ngFor="let post of posts; index as i">
-            <hr class="featurette-divider">
+          
+            <app-lastfivepost [post]="post" *ngFor="let post of posts; index as i" [index]="i" (onClick)="navigateToPost($event)"></app-lastfivepost>
+            <!-- <hr class="featurette-divider">
             <div class="row featurette">
               <div class="col-md-7" [class]="'order-md-'+i % 2">
                 <h2 class="featurette-heading" style="font-size: 40px;" [routerLink]="['/readpost']">{{post.Title}} 
@@ -135,8 +136,8 @@
                 <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 700px; height: 300px;" src="{{post.PostHeaderImage}}" data-holder-rendered="true">
               </div>
             </div>
-            <hr class="featurette-divider">
-          </div>
+            <hr class="featurette-divider"> -->
+          
           <!-- <div class="row featurette">
             <div class="col-md-7 order-md-2">
               <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>

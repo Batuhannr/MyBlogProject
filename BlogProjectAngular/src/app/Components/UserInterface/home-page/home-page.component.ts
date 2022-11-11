@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PostModel } from 'src/app/Models/PostModel';
 import { ApiService } from 'src/app/Services/apiService';
 
@@ -10,7 +11,7 @@ import { ApiService } from 'src/app/Services/apiService';
 export class HomePageComponent implements OnInit {
   posts : PostModel[] =[];
   
-  constructor(public apiService : ApiService) { }
+  constructor(public apiService : ApiService, private router: Router) { }
   
   ngOnInit(): void {
     this.apiService.getlastCountPost(5).
@@ -18,5 +19,9 @@ export class HomePageComponent implements OnInit {
         this.posts = result;
         console.log(result);
       });
+  }
+
+  navigateToPost(Id: number){
+    this.router.navigate([`readpost/${Id}`])
   }
 }
