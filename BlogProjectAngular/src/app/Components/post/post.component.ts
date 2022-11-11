@@ -38,7 +38,7 @@ export class PostComponent implements OnInit {
     
   }
   GetPost() {
-    this.apiServis.getPost().
+    this.apiServis.getPostImageNull().
       subscribe((result: ResultModel) => {
         this.posts = result.ResultObject as PostModel[];
         this.dataSource = new MatTableDataSource( this.posts);

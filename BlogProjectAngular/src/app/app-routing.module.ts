@@ -10,14 +10,18 @@ import { HomePageComponent } from './Components/UserInterface/home-page/home-pag
 import { ReadPostComponent } from './Components/UserInterface/read-post/read-post.component';
 
 const routes: Routes = [
-  {path: "", component: HomePageComponent},
-  {path: "admin", component: AdminComponent},
-  {path: "admin/Category", component: CategoryComponent },
-  {path: "admin/Tag", component: TagComponent},
-  {path: "admin/Post", component: PostComponent},
-  {path: "admin/addPost", component: AddPostComponent},
-  {path: "admin/post/get/postprew", component: PostPriviewComponentComponent},
-  {path: "readpost" , component: ReadPostComponent}
+  { path: "", component: HomePageComponent },
+  {
+    path: "admin", component: AdminComponent, children: [
+      { path: "Category", component: CategoryComponent },
+      { path: "Tag", component: TagComponent },
+      { path: "Post", component: PostComponent },
+      { path: "addPost", component: AddPostComponent },
+      { path: "post/get/postprew", component: PostPriviewComponentComponent },
+    ]
+  },
+
+  { path: "readpost/:id", component: ReadPostComponent }
 ];
 
 @NgModule({
