@@ -35,8 +35,9 @@ namespace BlogProjectWebApi.Repository
 
         public void UpdateReadingCount(int postId)
         {
-            Post post = _context.Posts.FirstOrDefault(s => s.Id == postId);
-            post.ReadingCount = post.ReadingCount + 1;
+            Post post = _context.Posts.Where(s => s.Id == postId).FirstOrDefault();
+            ++post.ReadingCount;
+            _context.SaveChanges();
         }
 
     }

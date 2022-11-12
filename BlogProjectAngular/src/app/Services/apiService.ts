@@ -13,13 +13,11 @@ import { TagModel } from '../Models/TagModel';
   providedIn: 'root'
 })
 export class ApiService {
-  public url = "https://localhost:44300/api/";
+  public url = environment.publicUrl;
 
   constructor(
     private http: HttpClient
   ) { }
-
-
 
   public getCategory(): Observable<ResultModel> {
     return this.http.get<ResultModel>(this.url + "category/get");

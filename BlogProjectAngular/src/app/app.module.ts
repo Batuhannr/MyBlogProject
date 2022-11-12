@@ -22,12 +22,16 @@ import { FormsModule } from '@angular/forms';
 
 import { CKEditorModule } from 'ng2-ckeditor';
 import { PostPriviewComponentComponent } from './Components/post-priview-component/post-priview-component.component';
-import { HomePageComponent } from './Components/UserInterface/home-page/home-page.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AdminComponent } from './Components/admin/admin.component';
-import { MainNavUserInterfaceComponent } from './Components/UserInterface/main-nav-user-interface/main-nav-user-interface.component';
-import { FooterComponent } from './Components/UserInterface/footer/footer.component';
-import { ReadPostComponent } from './Components/UserInterface/read-post/read-post.component';
+import { MainNavUserInterfaceComponent } from './Components/main-nav-user-interface/main-nav-user-interface.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { ReadPostComponent } from './pages/read-post/read-post.component';
 import { LastfivepostComponent } from './Components/lastfivepost/lastfivepost.component';
+import { MarketingCardComponent } from './Components/marketing-card/marketing-card.component';
+import { RecommendpostComponent } from './Components/recommendpost/recommendpost.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { ImageUploadComponent } from './Components/image-upload/image-upload.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,9 @@ import { LastfivepostComponent } from './Components/lastfivepost/lastfivepost.co
     FooterComponent,
     ReadPostComponent,
     LastfivepostComponent,
+    RecommendpostComponent,
+    AboutUsComponent,
+    ImageUploadComponent,
     
 
 
@@ -54,7 +61,8 @@ import { LastfivepostComponent } from './Components/lastfivepost/lastfivepost.co
     MyAlerDialogComponent,
     ConfirmDialogComponent,
     TagDialogComponent,
-    PostDialogComponent
+    PostDialogComponent,
+    MarketingCardComponent
 
   ],
   imports: [

@@ -6,22 +6,26 @@ import { CategoryComponent } from './Components/category/category.component';
 import { PostPriviewComponentComponent } from './Components/post-priview-component/post-priview-component.component';
 import { PostComponent } from './Components/post/post.component';
 import { TagComponent } from './Components/tag/tag.component';
-import { HomePageComponent } from './Components/UserInterface/home-page/home-page.component';
-import { ReadPostComponent } from './Components/UserInterface/read-post/read-post.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { ReadPostComponent } from './pages/read-post/read-post.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
 
 const routes: Routes = [
-  { path: "", component: HomePageComponent },
+  { path: "", component: AboutUsComponent },
   {
-    path: "admin", component: AdminComponent, children: [
+    path: "admin", component: AdminComponent,
+    children: [
       { path: "Category", component: CategoryComponent },
       { path: "Tag", component: TagComponent },
       { path: "Post", component: PostComponent },
       { path: "addPost", component: AddPostComponent },
       { path: "post/get/postprew", component: PostPriviewComponentComponent },
-    ]
+    ],
+    // canActivate: [AuthGuard]
   },
 
-  { path: "readpost/:id", component: ReadPostComponent }
+  { path: "readpost/:id", component: ReadPostComponent },
 ];
 
 @NgModule({

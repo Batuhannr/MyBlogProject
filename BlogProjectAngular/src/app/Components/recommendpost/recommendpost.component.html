@@ -1,0 +1,24 @@
+    <div class="row" style="display: block;">
+
+    <div class="mt-1" >
+        <div class="col-md-12" >
+            <div class="row"  (click)="choosePost(post.Id!)">
+                <div class="col-md-1" style="margin: auto">
+                    <span
+                        style=" font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 48px; font-weight: 700; width: 100%; -webkit-text-fill-color: transparent; -webkit-text-stroke-width: 1px">
+                        {{index+ 1}}</span>
+                </div>
+                <div class="col-md-11"
+                    style=" display: flex; align-items: center; margin-top: 15px;">
+                    <h6>
+                        <a>
+                            <span style="font-size: 25px; font-weight: 300;">
+                                {{post.Title}}</span>
+                        </a>
+                    </h6>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
