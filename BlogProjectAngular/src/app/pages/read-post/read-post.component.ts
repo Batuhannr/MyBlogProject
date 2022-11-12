@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommentModel } from 'src/app/Models/CommentModel';
 import { PostModel } from 'src/app/Models/PostModel';
 import { ResultModel } from 'src/app/Models/ResultModel';
@@ -16,13 +16,14 @@ export class ReadPostComponent implements OnInit {
   tenPost: PostModel[] = [];
   mostPost: PostModel[] = [];
   baseComment: CommentModel[] = [];
-  constructor(public apiServis: ApiService, private sanitizer: DomSanitizer, private route: ActivatedRoute) { }
+  constructor(public apiServis: ApiService, private sanitizer: DomSanitizer, private router: Router, private route: ActivatedRoute) { }
   data!: string;
   safeHtml!: SafeHtml;
   visible: boolean = false;
   id!: number;
   ngOnInit(): void {
-    this.id= this.route.snapshot.params['id'];
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.id = this.route.snapshot.params['id'];
     this.GetPost(this.id);
     this.loadhtml();
     this.load5Post();
@@ -40,6 +41,10 @@ export class ReadPostComponent implements OnInit {
     this.data = this.post.PostContents;
     console.log(this.data)
   }
+  navigateToPost(Id: number) {
+    this.router.navigate([`readpost/${Id}`])
+  }
+
   load5Post() {
     this.apiServis.getlastCountPostNull(5).
       subscribe((result: PostModel[]) => {
@@ -58,16 +63,16 @@ export class ReadPostComponent implements OnInit {
     const newComment: CommentModel = new CommentModel();
     newComment.PostedBy = postedBy;
     newComment.CommentContents = content;
-    newComment.PostId = 2049;
+    newComment.PostId = this.id;
     this.apiServis.addComment(newComment).subscribe((s) => {
       if (s.Result) {
-        alert("Yorum Eklendi");
+        this.ngOnInit();
+
       }
       else {
         alert("Hata Oluştu");
       }
     })
-    this.ngOnInit();
   }
   visibleChange(divId: number) {
     var div = document.getElementById("cevap" + divId);
@@ -77,7 +82,7 @@ export class ReadPostComponent implements OnInit {
     const newComment: CommentModel = new CommentModel();
     newComment.PostedBy = postby;
     newComment.CommentContents = content;
-    newComment.PostId = 2049;
+    newComment.PostId = this.id;
     newComment.ParentId = commentId;
     this.apiServis.addComment(newComment).subscribe((s) => {
       if (s.Result) {
@@ -92,7 +97,7 @@ export class ReadPostComponent implements OnInit {
       }
     })
   }
-  vazgec(divId: number,){
+  vazgec(divId: number,) {
     var div = document.getElementById("cevap" + divId);
     div!.style.display = 'none';
   }

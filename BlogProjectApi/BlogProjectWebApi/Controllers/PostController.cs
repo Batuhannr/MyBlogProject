@@ -178,11 +178,12 @@ namespace BlogProjectWebApi.Controllers
                 {
                     "Post Loaded"
                 };
+                
+                _repo.UpdateReadingCount(id);
                 post.PostTags = GetPostTagById(post.Id);
                 post.PostCategories = GetPostCategory(post.Id);
                 post.Comments = GetPostComment(post.Id);
                 result.ResultObject = post;
-                _repo.UpdateReadingCount(id);
 
                 return result;
 

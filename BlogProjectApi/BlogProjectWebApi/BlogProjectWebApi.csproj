@@ -206,6 +206,14 @@
     <Compile Include="Migrations\202211091641521_parentId.designer.cs">
       <DependentUpon>202211091641521_parentId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211121741478_genel.cs" />
+    <Compile Include="Migrations\202211121741478_genel.designer.cs">
+      <DependentUpon>202211121741478_genel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211121746044_genel1.cs" />
+    <Compile Include="Migrations\202211121746044_genel1.designer.cs">
+      <DependentUpon>202211121746044_genel1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Category.cs" />
@@ -261,6 +269,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211091641521_parentId.resx">
       <DependentUpon>202211091641521_parentId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211121741478_genel.resx">
+      <DependentUpon>202211121741478_genel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211121746044_genel1.resx">
+      <DependentUpon>202211121746044_genel1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

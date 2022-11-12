@@ -15,11 +15,8 @@ namespace BlogProjectWebApi.Models
             Comments = new List<Comment>();
         }
 
-        [Required]
         public string Title { get; set; }
-        [Required]
         public string Summary { get; set; }
-        [Required]
         public string PostContents { get; set; }
         public string PostHeaderImage { get; set; }
         public int? ReadingCount{ get; set; }

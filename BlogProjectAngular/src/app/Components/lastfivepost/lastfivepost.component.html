@@ -1,21 +1,27 @@
-<div (click)="choosePost(post.Id)">
-    <hr class="featurette-divider">
-    <div class="row featurette">
-      <div class="col-md-7" [class]="'order-md-'+index % 2">
-        <h2 class="featurette-heading" style="font-size: 40px;" [routerLink]="['/readpost']">{{post.Title}} 
-          <div style="background-color: green; float: right; border-radius: 20px; ">
-          <span class="" style="font-size: 14px;  color: white;  text-align: center; float: inherit;" *ngFor="let item of post.PostTags"> &nbsp;#{{item.Tag?.Title}} &nbsp;</span>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div (click)="choosePost(post.Id)">
+        <hr class="featurette-divider">
+        <div class="row featurette">
+          <div class="col-md-7" [class]="'order-md-'+index % 2">
+            <h2 class="featurette-heading" style="font-size: 40px;" [routerLink]="['/readpost']">{{post.Title}} 
+              <div style="background-color: green; float: right; border-radius: 20px; ">
+              <span class="" style="font-size: 14px;  color: white;  text-align: center; float: inherit;" *ngFor="let item of post.PostTags"> &nbsp;#{{item.Tag?.Title}} &nbsp;</span>
+              </div>
+              &nbsp;
+              <div style="background-color: blue; float: right; border-radius: 20px; ">
+                <span class="" style="font-size: 14px; color: white; ;border: 50%; float: inherit;" *ngFor="let item of post.PostCategories">&nbsp;{{item.Category?.Title}}&nbsp;</span>
+              </div>
+            </h2>
+            <p class="lead">{{post.Summary | slice:0:600}}...</p>
           </div>
-          &nbsp;
-          <div style="background-color: blue; float: right; border-radius: 20px; ">
-            <span class="" style="font-size: 14px; color: white; ;border: 50%; float: inherit;" *ngFor="let item of post.PostCategories">&nbsp;{{item.Category?.Title}}&nbsp;</span>
+          <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 700px; height: 300px;" src="{{post.PostHeaderImage}}" data-holder-rendered="true">
           </div>
-        </h2>
-        <p class="lead">{{post.Summary | slice:0:600}}...</p>
-      </div>
-      <div class="col-md-5">
-        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 700px; height: 300px;" src="{{post.PostHeaderImage}}" data-holder-rendered="true">
+        </div>
+        <hr class="featurette-divider">
       </div>
     </div>
-    <hr class="featurette-divider">
   </div>
+</div>
