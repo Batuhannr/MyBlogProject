@@ -49,6 +49,13 @@
                     'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat'
                 }"></editor> -->
                     <div class="col-md-12" style="margin-top: 1rem; margin-right: 2rem;float: right;">
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <input type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image"
+                                    autocomplete="off" />
+                                <button class="btn btn-success" (click)="btnImageSaveClick()">Resmi Kaydet</button>
+                            </div>
+                        </div>
                         <mat-checkbox name="published" [labelPosition]="labelPosition" #published>Is Published
                         </mat-checkbox>
                         &nbsp;
@@ -61,15 +68,8 @@
                         <button mat-raised-button color="accent">Clear</button>
                     </div>
                 </form>
-                <input type="file" (change)="onChanged($event)" />
-                <button (click)="onUpload()" class="btn btn-success">
-                    Upload
-                </button>
-                <div *ngIf="myImage">
-                    <img width="300" alt="Angular Logo" [src]="myImage | async" />
-                </div>
+
             </div>
-            <app-image-upload></app-image-upload>
         </div>
     </div>
 

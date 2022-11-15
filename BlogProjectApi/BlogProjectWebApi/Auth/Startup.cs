@@ -12,9 +12,26 @@ namespace BlogProjectWebApi.Auth
 {
     public class Startup
     {
-        public void Configuration(IAppBuilder app)
+        public void Configuration(IAppBuilder appBuilder)
         {
-            app.UseCors(CorsOptions.AllowAll);
+            appBuilder.UseCors(CorsOptions.AllowAll);
+            HttpConfiguration httpConfiguration = new HttpConfiguration();
+            ConfigureOAuth(appBuilder);
+            WebApiConfig.Register(httpConfiguration);
+            appBuilder.UseWebApi(httpConfiguration);
+        }
+        public void ConfigureOAuth(IAppBuilder appBuilder)
+        {
+            OAuthAuthorizationServerOptions oAuthAuthorizationServerOptions = new OAuthAuthorizationServerOptions()
+            {
+                TokenEndpointPath = new PathString("/api/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(12),
+                AllowInsecureHttp = true,
+                Provider = new AuthProvider()
+            };
+
+            appBuilder.UseOAuthAuthorizationServer(oAuthAuthorizationServerOptions);
+            appBuilder.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
     }
 }

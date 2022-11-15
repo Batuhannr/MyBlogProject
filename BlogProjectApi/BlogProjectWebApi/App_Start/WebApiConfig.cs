@@ -12,9 +12,10 @@ namespace BlogProjectWebApi
             // Web API configuration and services
 
             // Web API routes
+            //config.EnableCors();
+            //config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             config.MapHttpAttributeRoutes();
-            config.EnableCors();
-            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

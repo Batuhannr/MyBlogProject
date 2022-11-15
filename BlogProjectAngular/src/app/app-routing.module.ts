@@ -10,6 +10,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ReadPostComponent } from './pages/read-post/read-post.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   { path: "", component: AboutUsComponent },
@@ -22,10 +23,11 @@ const routes: Routes = [
       { path: "addPost", component: AddPostComponent },
       { path: "post/get/postprew", component: PostPriviewComponentComponent },
     ],
-    // canActivate: [AuthGuard]
+     canActivate: [AuthGuard]
   },
 
   { path: "readpost/:id", component: ReadPostComponent },
+  { path: "login", component: LoginComponent },
 ];
 
 @NgModule({

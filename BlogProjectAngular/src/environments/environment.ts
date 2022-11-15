@@ -4,7 +4,16 @@
 
 export const environment = {
   production: false,
-  publicUrl: 'https://localhost:44300/api/'
+  publicUrl: 'https://localhost:44300/api/',
+  firebaseConfig : {
+    apiKey: "AIzaSyDpkq8rkmzigmvxbhXqmeRnBXrEnb4PW1w",
+    authDomain: "myblogproject-f81e7.firebaseapp.com",
+    projectId: "myblogproject-f81e7",
+    storageBucket: "myblogproject-f81e7.appspot.com",
+    messagingSenderId: "13141943165",
+    appId: "1:13141943165:web:2680bf10bebb84335fa214",
+    measurementId: "G-D5L3L4L7F2"
+    }
 };
 
 /*
@@ -15,3 +24,14 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDpkq8rkmzigmvxbhXqmeRnBXrEnb4PW1w",
+//   authDomain: "myblogproject-f81e7.firebaseapp.com",
+//   projectId: "myblogproject-f81e7",
+//   storageBucket: "myblogproject-f81e7.appspot.com",
+//   messagingSenderId: "13141943165",
+//   appId: "1:13141943165:web:2680bf10bebb84335fa214",
+//   measurementId: "G-D5L3L4L7F2"
+// };

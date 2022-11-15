@@ -1,6 +1,8 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { finalize, Observable } from 'rxjs';
+import { ApiService } from 'src/app/Services/apiService';
 import { FileUploadService } from 'src/app/Services/file-upload.service';
 
 @Component({
@@ -9,78 +11,35 @@ import { FileUploadService } from 'src/app/Services/file-upload.service';
   styleUrls: ['./image-upload.component.css']
 })
 export class ImageUploadComponent implements OnInit {
-
-  selectedFiles?: FileList;
-  currentFile?: File;
-  progress = 0;
-  message = '';
-  preview = '';
-
-  imageInfos?: Observable<any>;
-
-  constructor(private uploadService: FileUploadService) {}
-
-  ngOnInit(): void {
-    this.imageInfos = this.uploadService.getFiles();
-  }
-  selectFile(event: any): void {
-    this.message = '';
-    this.preview = '';
-    this.progress = 0;
-    this.selectedFiles = event.target.files;
-  
-    if (this.selectedFiles) {
-      const file: File | null = this.selectedFiles.item(0);
-  
-      if (file) {
-        this.preview = '';
-        this.currentFile = file;
-  
-        const reader = new FileReader();
-  
-        reader.onload = (e: any) => {
-          console.log(e.target.result);
-          this.preview = e.target.result;
-        };
-  
-        reader.readAsDataURL(this.currentFile);
-      }
-    }
-  }
-  upload(): void {
-    this.progress = 0;
-  
-    if (this.selectedFiles) {
-      const file: File | null = this.selectedFiles.item(0);
-  
-      if (file) {
-        this.currentFile = file;
-  
-        this.uploadService.upload(this.currentFile).subscribe({
-          next: (event: any) => {
-            if (event.type === HttpEventType.UploadProgress) {
-              this.progress = Math.round((100 * event.loaded) / event.total);
-            } else if (event instanceof HttpResponse) {
-              this.message = event.body.message;
-              this.imageInfos = this.uploadService.getFiles();
+  title = "cloudsSorage";
+  selectedFile?: File;
+  fb : any;
+  downloadURL?: Observable<string>;
+  constructor(private Api: ApiService, private storage: AngularFireStorage) {}
+  ngOnInit() {}
+  onFileSelected(event:any) {
+    var n = Date.now();
+    this.selectedFile = event.target.files[0];
+    const filePath = `RoomsImages/${n}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(`RoomsImages/${n}`, this.selectedFile);
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.downloadURL = fileRef.getDownloadURL();
+          this.downloadURL.subscribe(url => {
+            if (url) {
+              this.fb = url;
             }
-          },
-          error: (err: any) => {
-            console.log(err);
-            this.progress = 0;
-  
-            if (err.error && err.error.message) {
-              this.message = err.error.message;
-            } else {
-              this.message = 'Could not upload the image!';
-            }
-  
-            this.currentFile = undefined;
-          },
-        });
-      }
-  
-      this.selectedFiles = undefined;
-    }
+            console.log("1",this.fb);
+          });
+        })
+      )
+      .subscribe(url => {
+        if (url) {
+          console.log("2",url);
+        }
+      });
   }
 }

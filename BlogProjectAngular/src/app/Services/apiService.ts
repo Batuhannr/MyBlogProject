@@ -79,4 +79,17 @@ export class ApiService {
   public addComment(comment: CommentModel): Observable<ResultModel> {
     return this.http.post<ResultModel>(this.url + "comment/addComment", comment);
   }
+  getToken(kullaniciadi: string,parola:string) : Observable<any>{
+    var data="username=" + kullaniciadi + "&password=" + parola + "&grant_type=password";
+    var reqHeader = new HttpHeaders({"Content-Type": "application/x-www-form-urlencoded"});
+    return this.http.post("https://localhost:44300/api/token",data,{headers: reqHeader});
+  }
+  AuthControl(){
+    if(localStorage.getItem("token")){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 }

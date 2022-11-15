@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Cors;
+//using System.Web.Http.Cors;
 
 namespace BlogProjectWebApi.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CommentController : ApiController
     {
         private CommentRepository _repo = new CommentRepository(new BlogDbContext());
