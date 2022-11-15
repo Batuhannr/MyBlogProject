@@ -19,7 +19,6 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { PostDialogComponent } from './Components/Dialogs/post-dialog/post-dialog.component';
 import { AddPostComponent } from './Components/add-post/add-post.component';
 import { FormsModule } from '@angular/forms';
-
 import { CKEditorModule } from 'ng2-ckeditor';
 import { PostPriviewComponentComponent } from './Components/post-priview-component/post-priview-component.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -32,7 +31,13 @@ import { MarketingCardComponent } from './Components/marketing-card/marketing-ca
 import { RecommendpostComponent } from './Components/recommendpost/recommendpost.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ImageUploadComponent } from './Components/image-upload/image-upload.component';
-
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { environment } from 'src/environments/environment';
+import { LoginComponent } from './pages/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,8 +57,10 @@ import { ImageUploadComponent } from './Components/image-upload/image-upload.com
     RecommendpostComponent,
     AboutUsComponent,
     ImageUploadComponent,
+    LoginComponent,
     
 
+    
 
 
     //Dialogs 
@@ -74,6 +81,8 @@ import { ImageUploadComponent } from './Components/image-upload/image-upload.com
     EditorModule,
     FormsModule,
     CKEditorModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
   ],
   providers: [
   ],

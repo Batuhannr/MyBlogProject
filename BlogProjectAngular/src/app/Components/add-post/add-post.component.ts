@@ -1,8 +1,9 @@
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Observable, Subscriber } from 'rxjs';
+import { finalize, Observable, Subscriber } from 'rxjs';
 import { CategoryModel } from 'src/app/Models/CategoryModel';
 import { PostCategory } from 'src/app/Models/PostCategory';
 import { PostModel } from 'src/app/Models/PostModel';
@@ -33,6 +34,11 @@ export class AddPostComponent implements OnInit {
   loading: boolean = false; // Flag variable
   file!: File;
   uploadForm!: FormGroup;
+  title = "cloudsSorage";
+  selectedFile?: File;
+  fb : any;
+  downloadURL?: Observable<string>;
+  headerImageUrl: string= "";
 
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   constructor(
@@ -40,7 +46,8 @@ export class AddPostComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private fileUploadService: FileUploadService,
     private formBuilder: FormBuilder,
-    private httpClient : HttpClient
+    private httpClient : HttpClient,
+    private storage: AngularFireStorage
   ) { }
 
   ngOnInit(): void {
@@ -64,7 +71,31 @@ export class AddPostComponent implements OnInit {
         this.category = result.ResultObject as CategoryModel[];
       });
   }
-
+  btnImageSaveClick(){
+    var n = Date.now();
+    const filePath = `PostHeaderImages/${n}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(`PostHeaderImages/${n}`, this.selectedFile);
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.downloadURL = fileRef.getDownloadURL();
+          this.downloadURL.subscribe(url => {
+            if (url) {
+              this.fb = url;
+              this.headerImageUrl = url;
+            }
+            // console.log(this.fb);
+          });
+        })
+      )
+      .subscribe(url => {
+        if (url) {
+          console.log(url);
+        }
+      });
+  }
   btnSaveClick(title: string, summary: string, contents: string, published: boolean, tags: number[], categories: number[]) {
     this.newTags = [];
     this.newCategories = [];
@@ -84,33 +115,12 @@ export class AddPostComponent implements OnInit {
     });
     this.post.PostTags = this.newTags;
     this.post.PostCategories = this.newCategories;
-    this.post.PostHeaderImage = this.baseImageString;
+    this.post.PostHeaderImage = this.headerImageUrl;
     this.apiServis.addPost(this.post).subscribe((s: ResultModel) => {
       alert(s);
     })
+    
 
-
-  }
-  onChanged($event: any) {
-    const file = $event.target.files[0];
-    this.file = $event.target.files[0];
-    this.convertToBase64(file);
-    // this.onUpload();
-    if ($event.target.files.length > 0) {
-      const file = $event.target.files[0];
-      this.uploadForm.get('profile')?.setValue(file);
-    }
-    const formData = new FormData();
-    formData.append('image', this.file, this.file.name);
-    const req =new HttpRequest('POST', `http://localhost:8080/upload`, formData, {
-      reportProgress: true,
-      responseType: 'json',
-    });
-    console.log(req)
-    // this.httpClient.post<any>("http://localhost:8080/upload/image/", formData).subscribe(
-    //   (res) => console.log(res),
-    //   (err) => console.log(err)
-    // );
 
   }
 
@@ -136,21 +146,8 @@ export class AddPostComponent implements OnInit {
       subscriber.complete();
     };
   }
-  onUpload() {
-    console.log("girdi")
-    this.fileUploadService.upload(this.file).subscribe(
-      (event: any) => {
-        console.log("girdi2");
-
-        if (typeof (event) === 'object') {
-          // Short link via api response
-          this.shortLink = event.link;
-          console.log("girdi3");
-
-          console.log(this.shortLink);
-          this.loading = false; // Flag variable 
-        }
-      }
-    );
+  onFileSelected(event:any) {
+    this.selectedFile = event.target.files[0];
   }
+  
 }

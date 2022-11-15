@@ -19,6 +19,7 @@ namespace BlogProjectWebApi.Context
         public DbSet<PostCategory> postCategories { get; set; }
         public DbSet<PostTag> postTags { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Users> Users { get; set; }
 
 
         //public override int SaveChanges()
