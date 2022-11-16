@@ -148,6 +148,7 @@
     <Compile Include="Context\BlogDbContext.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\PostCategoryController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\PostTagController.cs" />
@@ -196,10 +197,15 @@
     <Compile Include="Migrations\202211152046146_UsersAdd.designer.cs">
       <DependentUpon>202211152046146_UsersAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211161836500_emailAdd.cs" />
+    <Compile Include="Migrations\202211161836500_emailAdd.designer.cs">
+      <DependentUpon>202211161836500_emailAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\EnBaseEntity.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostCategory.cs" />
@@ -212,6 +218,7 @@
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\CommentRepository.cs" />
     <Compile Include="Repository\DenemeRep.cs" />
+    <Compile Include="Repository\EmailRepository.cs" />
     <Compile Include="Repository\PostCategoryRepository.cs" />
     <Compile Include="Repository\PostRepository.cs" />
     <Compile Include="Repository\PostTagRepository.cs" />
@@ -261,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211152046146_UsersAdd.resx">
       <DependentUpon>202211152046146_UsersAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211161836500_emailAdd.resx">
+      <DependentUpon>202211161836500_emailAdd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

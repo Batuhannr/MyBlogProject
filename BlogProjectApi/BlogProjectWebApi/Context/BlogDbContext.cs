@@ -20,6 +20,7 @@ namespace BlogProjectWebApi.Context
         public DbSet<PostTag> postTags { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<EmailModel> Emails { get; set; }
 
 
         //public override int SaveChanges()

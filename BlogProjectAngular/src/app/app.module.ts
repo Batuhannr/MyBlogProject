@@ -38,6 +38,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from './pages/login/login.component';
+import { EmailComponent } from './Components/email/email.component';
+import { ReadEmailComponent } from './Components/Dialogs/read-email/read-email.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +60,7 @@ import { LoginComponent } from './pages/login/login.component';
     AboutUsComponent,
     ImageUploadComponent,
     LoginComponent,
+    EmailComponent,
     
 
     
@@ -69,7 +72,8 @@ import { LoginComponent } from './pages/login/login.component';
     ConfirmDialogComponent,
     TagDialogComponent,
     PostDialogComponent,
-    MarketingCardComponent
+    MarketingCardComponent,
+    ReadEmailComponent,
 
   ],
   imports: [
