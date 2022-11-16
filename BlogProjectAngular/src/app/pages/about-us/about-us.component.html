@@ -345,24 +345,24 @@
                         <div class="col-md-6 con-left aos-init aos-animate" data-aos="fade-up">
                             <div class="form-group">
 
-                                <input class="form-control" type="text" name="Name" placeholder="Ad Soyad" required="">
+                                <input class="form-control" type="text" name="Name" placeholder="Ad Soyad" required="" #adSoyad>
                             </div>
                             <div class="form-group">
 
-                                <input class="form-control" type="email" name="Email" placeholder="Email" required="">
+                                <input class="form-control" type="email" name="Email" placeholder="Email" required="" #email>
                             </div>
                             <div class="form-group">
 
-                                <input class="form-control" type="text" name="Subject" placeholder="Konu" required="">
+                                <input class="form-control" type="text" name="Subject" placeholder="Konu" required="" #subject>
                             </div>
                         </div>
                         <div class="col-md-6 con-right aos-init aos-animate" data-aos="fade-up">
                             <div class="form-group">
-                                <textarea id="textarea" placeholder="Mesajınız" required=""></textarea>
+                                <textarea id="textarea" placeholder="Mesajınız" required="" #content></textarea>
                             </div>
                         </div>
                         <div class="sub-honey mx-auto mt-3">
-                            <input class="form-control" type="submit" value="Gönder">
+                            <input class="form-control" (click)="SendMail(adSoyad.value,subject.value,content.value,email.value)" type="submit" value="Gönder">
                         </div>
                     </div>
                 </form>

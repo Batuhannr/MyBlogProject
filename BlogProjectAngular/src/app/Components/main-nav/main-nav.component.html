@@ -6,13 +6,14 @@
         <a mat-list-item [routerLink]="['/admin//Category']"   >Category</a>
         <a mat-list-item [routerLink]="['/admin//Tag']">Tag</a>
         <a mat-list-item router [routerLink]="['/admin//Post']">Post</a>
+        <a mat-list-item router [routerLink]="['/admin//email']">Email</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar color="primary" class="mat-elevation-z8">
         <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
           *ngIf="isHandset$ | async">
-          <mat-icon aria-label="Side nav toggle icon">Main Menu</mat-icon>
+          <mat-icon aria-label="Side nav toggle icon" fontIcon="menu">Main Menu</mat-icon>
         </button>
         <span>Blog Project Admin Panel</span>
         <span class="spacer"></span>

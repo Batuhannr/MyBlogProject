@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { CategoryComponent } from '../Components/category/category.component';
 import { CategoryModel } from '../Models/CategoryModel';
 import { CommentModel } from '../Models/CommentModel';
+import { EmailModel } from '../Models/EmailModel';
 import { PostModel } from '../Models/PostModel';
 import { ResultModel } from '../Models/ResultModel';
 import { TagModel } from '../Models/TagModel';
@@ -91,5 +92,16 @@ export class ApiService {
     else{
       return false;
     }
+  }
+
+  public getEmail(): Observable<EmailModel[]> {
+    return this.http.get<EmailModel[]>(this.url + "email/get");
+  }
+  public sendEmail(email: EmailModel): Observable<EmailModel> {
+    return this.http.post<EmailModel>(this.url + "email/send", email);
+
+  }
+  public removeEmail(emailId: number) {
+    return this.http.delete(this.url + "email/delete/" + emailId);
   }
 }

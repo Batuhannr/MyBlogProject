@@ -11,6 +11,7 @@ import { ReadPostComponent } from './pages/read-post/read-post.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { LoginComponent } from './pages/login/login.component';
+import { EmailComponent } from './Components/email/email.component';
 
 const routes: Routes = [
   { path: "", component: AboutUsComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: "Post", component: PostComponent },
       { path: "addPost", component: AddPostComponent },
       { path: "post/get/postprew", component: PostPriviewComponentComponent },
+      { path: "email", component: EmailComponent },
     ],
      canActivate: [AuthGuard]
   },

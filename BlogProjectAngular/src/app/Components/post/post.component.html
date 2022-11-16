@@ -1,74 +1,83 @@
-<div class="containers">
-  <h1 style="margin-top: 30px; margin-left: 30px;">Post</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+  <h1 style="margin-top: 30px; ">Post</h1>
 
-  <p>&nbsp;</p>
-  <mat-form-field appearance="outline" style="margin-left: 20px; width: 100em; ">
-    <input matInput placeholder="Search" (keyup)="PostFilter($event)">
-  </mat-form-field>
-  <button mat-flat-button color="primary" style="margin-left: 10px;margin-right: 50px; margin-top: 20px; float: right;">
-    <mat-icon aria-label="label" matTooltip="Add Post" [routerLink]="['/admin/addPost']">add</mat-icon>
-  </button>
-  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-
-    <ng-container matColumnDef="Id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Post Id
-      </mat-header-cell>
-      <mat-cell *matCellDef="let posts"> {{posts.Id}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="Title">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Post Title
-      </mat-header-cell>
-      <mat-cell *matCellDef="let posts"> {{posts.Title}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="PostContents">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Post Contents
-      </mat-header-cell>
-      <mat-cell *matCellDef="let posts"> {{posts.PostContents | slice:0:30 }}... </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="IsPublished">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Published
-      </mat-header-cell>
-      <mat-cell *matCellDef="let posts">
-        <mat-checkbox checked="{{posts.IsPublished}}" style="padding-left: 30%;"></mat-checkbox>
-      </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="CreatedOn">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Created
-      </mat-header-cell>
-      <mat-cell *matCellDef="let posts"> {{posts.CreatedOn}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="LastModifiedOn">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Last Modified
-      </mat-header-cell>
-      <mat-cell *matCellDef="let posts"> {{posts.LastModifiedOn}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="PublishedOn">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Published
-      </mat-header-cell>
-      <mat-cell *matCellDef="let posts"> {{posts.PublishedOn}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="Summary">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Summary
-      </mat-header-cell>
-      <mat-cell *matCellDef="let posts"> {{posts.Summary}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="operations">
-      <mat-header-cell *matHeaderCellDef> Operations
-      </mat-header-cell>
-      <mat-cell *matCellDef="let data">
-        <button mat-icon-button>
-          <mat-icon aria-label="label" class="primary" matTooltip="" (click)="PostUpdate(data)">edit</mat-icon>
-          &nbsp;
-          <mat-icon aria-label="label" color="warn" matTooltip="" (click)="PostRemove(data)">delete</mat-icon>
-        </button>
-      </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-  </mat-table>
-
-  <mat-paginator [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons="true">
-  </mat-paginator>
+        </div>
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" style=" width: 100%; ">
+            <input matInput placeholder="Search" (keyup)="PostFilter($event)">
+          </mat-form-field>
+        </div>
+        <div class="col-md-12">
+          <button mat-flat-button color="primary" style="width: 100%;">
+            <mat-icon aria-label="label" matTooltip="Add Post" [routerLink]="['/admin/addPost']">add</mat-icon>
+          </button>
+        </div>
+        <div class="col-md-12">
+          <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+            <ng-container matColumnDef="Id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Post Id
+              </mat-header-cell>
+              <mat-cell *matCellDef="let posts"> {{posts.Id}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Title">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Post Title
+              </mat-header-cell>
+              <mat-cell *matCellDef="let posts"> {{posts.Title}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="PostContents">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Post Contents
+              </mat-header-cell>
+              <mat-cell *matCellDef="let posts"> {{posts.PostContents | slice:0:30 }}... </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="IsPublished">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Published
+              </mat-header-cell>
+              <mat-cell *matCellDef="let posts">
+                <mat-checkbox checked="{{posts.IsPublished}}" style="padding-left: 30%;"></mat-checkbox>
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="CreatedOn">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Created
+              </mat-header-cell>
+              <mat-cell *matCellDef="let posts"> {{posts.CreatedOn}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="LastModifiedOn">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Last Modified
+              </mat-header-cell>
+              <mat-cell *matCellDef="let posts"> {{posts.LastModifiedOn}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="PublishedOn">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Published
+              </mat-header-cell>
+              <mat-cell *matCellDef="let posts"> {{posts.PublishedOn}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Summary">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Summary
+              </mat-header-cell>
+              <mat-cell *matCellDef="let posts"> {{posts.Summary}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="operations">
+              <mat-header-cell *matHeaderCellDef> Operations
+              </mat-header-cell>
+              <mat-cell *matCellDef="let data">
+                <button mat-icon-button>
+                  <mat-icon aria-label="label" class="primary" matTooltip="" (click)="PostUpdate(data)">edit</mat-icon>
+                  &nbsp;
+                  <mat-icon aria-label="label" color="warn" matTooltip="" (click)="PostRemove(data)">delete</mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+          <mat-paginator [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons="true">
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
